@@ -189,8 +189,8 @@ ghcnd <- function(stationid, ...){
   if (!is_ghcnd(x = csvpath)) {
     res <- ghcnd_GET(path, stationid, ...)
   } else {
-    res <- read.csv(csvpath, stringsAsFactors = FALSE,
-                    colClasses = ghcnd_col_classes)
+    res <- read.csv(csvpath, stringsAsFactors = FALSE)
+                    #colClasses = ghcnd_col_classes)
   }
   res <- tibble::as_data_frame(res)
   attr(res, 'source') <- csvpath
