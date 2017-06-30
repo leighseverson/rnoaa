@@ -63,6 +63,7 @@ You can pass your token in as an argument or store it one of two places:
 See \code{\link{Startup}} for information on how to create/find your
 .Rrofile and .Renviron files
 }
+
 \examples{
 \dontrun{
 # All location categories, first 25 results
@@ -73,9 +74,11 @@ ncdc_locs_cats(locationcategoryid='CLIM_REG')
 
 # Displays available location categories within GHCN-Daily dataset
 ncdc_locs_cats(datasetid='GHCND')
+ncdc_locs_cats(datasetid='GSOY')
+ncdc_locs_cats(datasetid='ANNUAL')
 
 # multiple datasetid's
-ncdc_locs_cats(datasetid=c('GHCND', 'GHCNDMS'))
+ncdc_locs_cats(datasetid=c('GHCND', 'GSOM'))
 
 # Displays available location categories from start date 1970-01-01
 ncdc_locs_cats(startdate='1970-01-01')
@@ -91,4 +94,3 @@ Other ncdc: \code{\link{ncdc_combine}},
   \code{\link{ncdc_plot}}, \code{\link{ncdc_stations}},
   \code{\link{ncdc}}
 }
-

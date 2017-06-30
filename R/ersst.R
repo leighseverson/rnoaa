@@ -40,11 +40,7 @@
 #' ## varibles
 #' names(res$var)
 #' ## get a variable
-#' ncdf4::ncvar_get(res, "lon_bnds")
-#'
-#' # curl debugging
-#' library('httr')
-#' ersst(year = 2015, month = 10, config=verbose())
+#' ncdf4::ncvar_get(res, "ssta")
 #' }
 ersst <- function(year, month, overwrite = TRUE, ...) {
   calls <- names(sapply(match.call(), deparse))[-1]
@@ -67,7 +63,7 @@ make_ersst <- function(year, month) {
 }
 
 ersst_base <- function(ver = "v4") {
-  sprintf("http://www1.ncdc.noaa.gov/pub/data/cmb/ersst/%s/netcdf/ersst.%s",
+  sprintf("https://www1.ncdc.noaa.gov/pub/data/cmb/ersst/%s/netcdf/ersst.%s",
           ver, ver)
 }
 

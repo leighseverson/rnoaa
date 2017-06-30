@@ -44,7 +44,12 @@ We use \pkg{rappdirs} to store files, see
 \code{\link[rappdirs]{user_cache_dir}} for how we determine the directory on
 your machine to save files to, and run
 \code{rappdirs::user_cache_dir("rnoaa/ghcnd")} to get that directory.
+
+Note that between versions of \pkg{rnoaa} you may want to clear your
+cache of ghcnd files IF there are changes in ghcnd functions. See
+\code{\link{ghcnd_clear_cache}} or you can do so manually.
 }
+
 \examples{
 \dontrun{
 # Get data
@@ -74,10 +79,6 @@ dat \%>\%
  filter(element == "PRCP", year == 1909)
 }
 }
-\author{
-Scott Chamberlain \email{myrmecocystus@gmail.com},
-Adam Erickson \email{adam.erickson@ubc.ca}
-}
 \seealso{
 To generate a weather dataset for a single weather site that has
 been cleaned to a tidier weather format, the user should use the
@@ -86,4 +87,7 @@ processes the output, or \code{\link{meteo_tidy_ghcnd}}, which wraps the
 \code{\link{ghcnd_search}} function to output a tidy dataframe. To pull
 GHCND data from multiple monitors, see \code{\link{meteo_pull_monitors}}.
 }
-
+\author{
+Scott Chamberlain \email{myrmecocystus@gmail.com},
+Adam Erickson \email{adam.erickson@ubc.ca}
+}

@@ -145,6 +145,10 @@ ghcnd_search <- function(stationid, date_min = NULL, date_max = NULL,
 #' your machine to save files to, and run
 #' \code{rappdirs::user_cache_dir("rnoaa/ghcnd")} to get that directory.
 #'
+#' Note that between versions of \pkg{rnoaa} you may want to clear your
+#' cache of ghcnd files IF there are changes in ghcnd functions. See
+#' \code{\link{ghcnd_clear_cache}} or you can do so manually.
+#'
 #' @examples \dontrun{
 #' # Get data
 #' ghcnd(stationid = "AGE00147704")
@@ -185,12 +189,18 @@ ghcnd <- function(stationid, ...){
   if (!is_ghcnd(x = csvpath)) {
     res <- ghcnd_GET(path, stationid, ...)
   } else {
-    res <- read.csv(csvpath, stringsAsFactors = FALSE)
+    res <- read.csv(csvpath, stringsAsFactors = FALSE,
+                    colClasses = ghcnd_col_classes)
   }
   res <- tibble::as_data_frame(res)
   attr(res, 'source') <- csvpath
   res
 }
+
+ghcnd_col_classes <- c(
+  "character", "integer", "integer", "character",
+  rep(c("integer", "character", "character", "character"), times = 31)
+)
 
 fm <- function(n) {
   gsub("\\s", "0", n)
@@ -453,6 +463,12 @@ ghcnd_GET <- function(bp, stationid, ...){
       lapply(1:31, function(x) paste0(c("VALUE","MFLAG","QFLAG","SFLAG"), x))))
   df <- read.fwf(textConnection(tt), c(11,4,2,4,rep(c(5,1,1,1), 31)),
                  na.strings = "-9999")
+  df[] <- Map(function(a, b) {
+    if (b == "integer") {
+      a <- as.character(a)
+    }
+    suppressWarnings(eval(parse(text = paste0("as.", b)))(a))
+  }, df, ghcnd_col_classes)
   dat <- stats::setNames(df, vars)
   write.csv(dat, fp, row.names = FALSE)
   return(dat)
@@ -468,4 +484,7 @@ ghcnd_local <- function(stationid, path) {
 is_ghcnd <- function(x) if (file.exists(x)) TRUE else FALSE
 str_extract_ <- function(string, pattern) {
   regmatches(string, regexpr(pattern, string))
+}
+str_extract_all_ <- function(string, pattern) {
+  regmatches(string, gregexpr(pattern, string))
 }

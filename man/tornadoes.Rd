@@ -7,7 +7,8 @@
 tornadoes(overwrite = TRUE, ...)
 }
 \arguments{
-\item{overwrite}{(logical) To overwrite the path to store files in or not, Default: \code{TRUE}}
+\item{overwrite}{(logical) To overwrite the path to store files in or not,
+Default: \code{TRUE}}
 
 \item{...}{Curl options passed on to \code{\link[httr]{GET}} (optional)}
 }
@@ -24,6 +25,7 @@ We use \pkg{rappdirs} to store files, see
 we determine the directory on your machine to save files to, and run
 \code{rappdirs::user_cache_dir("rnoaa/tornadoes")} to get that directory.
 }
+
 \examples{
 \dontrun{
 shp <- tornadoes()
@@ -34,4 +36,3 @@ plot(shp) # may take 10 sec or so to render
 \references{
 \url{http://www.spc.noaa.gov/gis/svrgis/}
 }
-

@@ -4,11 +4,11 @@
 \alias{gefs}
 \alias{gefs_CONNECT}
 \alias{gefs_GET}
-\alias{gefs_dimension_values}
-\alias{gefs_dimensions}
 \alias{gefs_latitudes}
 \alias{gefs_longitudes}
 \alias{gefs_variables}
+\alias{gefs_dimensions}
+\alias{gefs_dimension_values}
 \title{Get GEFS ensemble forecast data for a specific lat/lon.}
 \usage{
 gefs(var, lat, lon, ...)
@@ -91,20 +91,21 @@ lat <- 46.28125
 lon <- -116.2188
 
 #Get forecast for a certain variable.
-forecast <- gefs("Total_precipitation_surface_6_Hour_Accumulation_ens", lat, lon)
+forecast <- gefs("Total_precipitation_surface_6_Hour_Accumulation_ens",
+  lat, lon)
 
 #Fetch a different date (available up to 10 days prior to today)
-forecast_yesterday_prec <- gefs("Total_precipitation_surface_6_Hour_Accumulation_ens",
-                               lat,
-                               lon,
-                               date=format(as.Date(Sys.time()) - 1, "\%Y\%m\%d"))
+forecast_yesterday_prec <- gefs(
+   "Total_precipitation_surface_6_Hour_Accumulation_ens",
+   lat, lon, date=format(as.Date(Sys.time()) - 1, "\%Y\%m\%d"))
 
 #specific ensemble and times, for the 1800 forecast.
 # here ensembles 1-3 (ensembles are numbered starting with 0)
 # and time for 2 days from today at 1800
-date=format(as.Date(Sys.time()) - 1, "\%Y\%m\%d")
+date <- format(as.Date(Sys.time()) - 1, "\%Y\%m\%d")
 var <- "Temperature_height_above_ground_ens"
-gefs(var, lat, lon, date = date, forecast_time = "1800", ens_idx=2:4, time_idx=1:8)
+gefs(var, lat, lon, date = date, forecast_time = "1800", ens_idx=2:4,
+  time_idx=1:8)
 
 #One ensemble, all latitudes and longitudes (this is a big file) for the
 # next 3 days.
@@ -112,13 +113,12 @@ gefs(var, lat, lon, date = date, forecast_time = "1800", ens_idx=2:4, time_idx=1
 }
 
 }
-\author{
-Nicholas Potter \email{potterzot@gmail.com}
-}
 \references{
 \itemize{
  \item Data description - \url{http://bit.ly/noaagefs}.
  \item Adapted from Python code written by Von P. Walden, Washington State University.
 }
 }
-
+\author{
+Nicholas Potter \email{potterzot@gmail.com}
+}

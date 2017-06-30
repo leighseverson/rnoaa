@@ -36,6 +36,7 @@ to get that directory.
 Files are quite small, so we don't worry about reading in cached data to
 save time, as we do in some of the other functions in this package.
 }
+
 \examples{
 \dontrun{
 # October, 2015
@@ -54,14 +55,9 @@ res <- ersst(year = 1890, month = 2)
 ## varibles
 names(res$var)
 ## get a variable
-ncdf4::ncvar_get(res, "lon_bnds")
-
-# curl debugging
-library('httr')
-ersst(year = 2015, month = 10, config=verbose())
+ncdf4::ncvar_get(res, "ssta")
 }
 }
 \references{
 \url{https://www.ncdc.noaa.gov/data-access/marineocean-data/extended-reconstructed-sea-surface-temperature-ersst-v4}
 }
-

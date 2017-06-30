@@ -2,8 +2,8 @@
 % Please edit documentation in R/rnoaa-package.r
 \docType{package}
 \name{rnoaa-package}
-\alias{rnoaa}
 \alias{rnoaa-package}
+\alias{rnoaa}
 \title{rnoaa}
 \description{
 rnoaa is an R interface to NOAA climate data.
@@ -35,6 +35,10 @@ function prefixes are:
  \item \code{tornadoes} - From the NOAA Storm Prediction Center
  \item \code{argo_*} - Argo buoys
  \item \code{coops_search} - NOAA CO-OPS - tides and currents data
+ \item \code{cpc_prcp} - rainfall data from the NOAA Climate
+ Prediction Center (CPC)
+ \item \code{arc2} - rainfall data from Africa Rainfall Climatology
+ version 2
 }
 }
 
@@ -61,5 +65,5 @@ provide a set of helper functions to:
   (\code{meteo_coverage()})
 }
 }
-\keyword{package}
 
+\keyword{package}

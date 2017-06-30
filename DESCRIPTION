@@ -7,7 +7,7 @@ Description: Client for many 'NOAA' data sources including the 'NCDC' climate
     for 'NOAA' sea ice data, the 'NOAA' severe weather inventory, 'NOAA' Historical
     Observing 'Metadata' Repository ('HOMR') data, 'NOAA' storm data via 'IBTrACS',
     tornado data via the 'NOAA' storm prediction center, and more.
-Version: 0.6.7.9100
+Version: 0.7.0.9100
 License: MIT + file LICENSE
 Encoding: UTF-8
 Authors@R: c(
@@ -28,6 +28,7 @@ VignetteBuilder: knitr
 Imports:
     utils,
     httr (>= 1.0.0),
+    crul (>= 0.2.0),
     lubridate,
     dplyr,
     tidyr,
@@ -40,9 +41,10 @@ Imports:
     gridExtra,
     tibble,
     isdparser (>= 0.2.0),
-    geonames
+    geonames,
+    hoardr
 Suggests:
-    roxygen2 (>= 5.0.1),
+    roxygen2 (>= 6.0.1),
     testthat,
     knitr,
     taxize,
@@ -51,8 +53,6 @@ Suggests:
     rgdal,
     rmarkdown,
     purrr,
-    covr,
     ggmap,
     ropenaq
-Remotes: ropensci/isdparser
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
